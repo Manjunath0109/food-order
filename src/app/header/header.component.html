@@ -1,0 +1,44 @@
+<mat-toolbar>
+  <a href="https://www.zoho.com/" class="nav-logo" target="_blank">
+    <img alt="ZOHO" class="fit-logo" src="../assets/zoho-logo-512px.png" />
+  </a>
+  <a mat-button routerLink="/food/menu" routerLinkActive="active">
+    <mat-icon>restaurant</mat-icon> <span class="padding-left">Menu</span>
+  </a>
+  <a mat-button routerLink="/food/orders" routerLinkActive="active">
+    <mat-icon>view_list</mat-icon> <span class="padding-left">Orders</span>
+  </a>
+  <span class="example-spacer"></span>
+  <a mat-button>
+    <mat-icon>notifications_active</mat-icon>
+    <span class="padding-left">Notifications</span>
+  </a>
+  <ng-container
+    *ngTemplateOutlet="
+      showCartButton;
+      context: {
+        count: cartItemsCount$ | async
+      }
+    "
+  ></ng-container>
+  <ng-template #showCartButton let-count="count">
+    <a
+      mat-button
+      [matBadge]="count"
+      [matBadgeHidden]="count ? false : true"
+      (click)="opened = !opened"
+    >
+      <mat-icon>shopping_cart</mat-icon>
+      <span class="padding-left">Cart</span>
+    </a>
+  </ng-template>
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav [(opened)]="opened" position="end">
+    <app-cart-items (closeSideBar)="opened = !opened"></app-cart-items>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet #outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,73 @@
+table {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+th.mat-header-cell {
+  max-width: 300px;
+}
+
+td.mat-cell {
+  vertical-align: middle !important;
+}
+
+.input-field {
+  text-align: right;
+  padding-right: 20px;
+}
+
+.search-text {
+  font-weight: bold;
+  padding-right: 10px;
+  padding-left: 20px;
+  color: lightseagreen;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.padding-r-20 {
+  padding-right: 20px;
+}
+
+.w-5 {
+  width: 5%;
+}
+
+.w-10 {
+  width: 10%;
+}
+
+.w-15 {
+  width: 15%;
+}
+
+.w-150 {
+  width: 150px;
+}
+
+.float-r {
+  float: right;
+}
+
+.input-field .mat-form-field {
+  font-size: 12px;
+  width: 70%;
+}
+
+.fit-text {
+  text-align: center;
+  font-weight: 500;
+}
+
+.example-additional-selection {
+  opacity: 0.75;
+  font-size: 0.75em;
+}
+
+.button-active {
+  color: blue;
+  background: lightgrey;
+}

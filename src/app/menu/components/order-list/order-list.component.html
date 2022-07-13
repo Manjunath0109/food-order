@@ -1,0 +1,131 @@
+<div style="padding-top: 2rem">
+  <div class="inline-block">
+    <span class="search-text">Apply Filters</span>
+    <ng-container *ngFor="let filter of filtersArr">
+      <mat-form-field appearance="fill" class="w-150 padding-r-20">
+        <mat-label>{{ filter.placeHolder }}</mat-label>
+        <mat-select
+          [formControl]="filter.filterForm"
+          multiple
+          (selectionChange)="applyFilters()"
+        >
+          <mat-select-trigger>
+            {{ filter.filterForm.value[0] || "" }}
+            <span
+              *ngIf="(filter.filterForm.value?.length || 0) > 1"
+              class="example-additional-selection"
+            >
+              (+{{ (filter.filterForm.value?.length || 0) - 1 }}
+              {{ filter.filterForm.value?.length === 2 ? "other" : "others" }})
+            </span>
+          </mat-select-trigger>
+          <mat-option *ngFor="let value of filter.values" [value]="value">{{
+            value
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </ng-container>
+    <a
+      mat-button
+      [ngClass]="{ 'button-active': showBestSeller }"
+      style="border: 1px solid"
+      (click)="showBestSellingFood()"
+    >
+      <mat-icon>star</mat-icon>
+      <span class="padding-left">Bestseller</span>
+    </a>
+  </div>
+  <div class="input-field inline-block float-r">
+    <span class="search-text">Search</span>
+    <mat-form-field appearance="outline">
+      <input
+        matInput
+        type="text"
+        placeholder="Start Typing"
+        (keyup)="doFilter($event.target)"
+      />
+    </mat-form-field>
+  </div>
+</div>
+
+<table mat-table [dataSource]="dataSource" matSort>
+  <ng-container matColumnDef="id">
+    <th class="w-10" mat-header-cell *matHeaderCellDef mat-sort-header>
+      Order Id
+    </th>
+    <td class="w-10" mat-cell *matCellDef="let element">
+      {{ element.id }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <th class="w-10" mat-header-cell *matHeaderCellDef mat-sort-header>
+      Food Name
+    </th>
+    <td class="w-10" mat-cell *matCellDef="let element">
+      {{ element.name }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="type">
+    <th class="w-15" mat-header-cell *matHeaderCellDef mat-sort-header>Type</th>
+    <td class="w-15" mat-cell *matCellDef="let element">
+      {{ element.type }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="cuisine">
+    <th class="w-15" mat-header-cell *matHeaderCellDef mat-sort-header>
+      Cuisine
+    </th>
+    <td class="w-15" mat-cell *matCellDef="let element">
+      {{ element.cuisine }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="quantity">
+    <th class="w-10" mat-header-cell *matHeaderCellDef mat-sort-header>
+      Quantity
+    </th>
+    <td class="w-10" mat-cell *matCellDef="let element">
+      {{ element.quantity }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="price">
+    <th class="w-10" mat-header-cell *matHeaderCellDef mat-sort-header>
+      Total Price
+    </th>
+    <td class="w-10" mat-cell *matCellDef="let element">
+      {{ element.quantity * element.price | currency: "INR" }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="orderDate">
+    <th class="w-10" mat-header-cell *matHeaderCellDef mat-sort-header>
+      Ordered Date
+    </th>
+    <td class="w-10" mat-cell *matCellDef="let element">
+      {{ element.orderDate | date }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="delete">
+    <th class="w-5" mat-header-cell *matHeaderCellDef>Delete</th>
+    <td class="w-5" mat-cell *matCellDef="let element">
+      <button mat-icon-button color="warn" (click)="deleteOrder(element)">
+        <mat-icon class="mat-18">delete_forever</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
+
+<mat-paginator
+  [pageSizeOptions]="[10, 15, 20]"
+  showFirstLastButtons
+  aria-label="Select page of periodic elements"
+>
+</mat-paginator>

@@ -1,0 +1,100 @@
+<ng-container *ngIf="(cartItems$ | async).length; else noCartItems">
+  <div class="all-action-cta">
+    <div class="btn-group">
+      <button
+        tabindex="-1"
+        mat-stroked-button
+        matRipple
+        style="margin-left: 5px"
+        color="warn"
+        (click)="removeAllFromCart()"
+      >
+        Remove all
+      </button>
+    </div>
+    <div *ngIf="cartItems$ | async as cartItems">
+      <button
+        mat-raised-button
+        matRipple
+        color="primary"
+        style="margin-right: 5px"
+        (click)="orderAllFromCart(cartItems)"
+      >
+        Order all
+      </button>
+    </div>
+  </div>
+  <ng-container *ngFor="let item of cartItems$ | async as cartItems">
+    <mat-card>
+      <div class="card">
+        <div class="row">
+          <div>
+            <mat-card-subtitle class="inline-block">{{
+              item.cuisine + " Cuisine"
+            }}</mat-card-subtitle>
+            <a
+              mat-button
+              class="inline-block float-r"
+              (click)="removeFromCart(item)"
+            >
+              <mat-icon color="warn">cancel</mat-icon>
+            </a>
+          </div>
+          <mat-card-title>{{ item.name }}</mat-card-title>
+          <mat-card-content>
+            <div>
+              <div class="inline-block font-l"><strong>Quantity</strong></div>
+              <div class="wrapper inline-block float-r">
+                <button class="plusminus" (click)="handleMinus(item)">-</button>
+                <input
+                  type="number"
+                  class="num"
+                  [value]="item.quantity"
+                  [(ngModel)]="item.quantity"
+                  max="20"
+                  (change)="handleChange($event, item)"
+                />
+                <button class="plusminus" (click)="handlePlus(item)">+</button>
+              </div>
+            </div>
+            <div style="padding-top: 10px; padding-bottom: 10px">
+              <div class="inline-block font-l"><strong>Price</strong></div>
+              <div class="inline-block font-l float-r">
+                <strong>{{ item.price | currency: "INR" }}</strong>
+              </div>
+            </div>
+            <div style="border-top: dotted 1px"></div>
+            <div>
+              <div class="inline-block font-l">
+                <strong>Total price</strong>
+              </div>
+              <div class="inline-block font-l float-r">
+                <strong>{{
+                  item.price * item.quantity | currency: "INR"
+                }}</strong>
+              </div>
+            </div>
+          </mat-card-content>
+          <mat-card-actions>
+            <div>
+              <button
+                mat-stroked-button
+                matRipple
+                color="primary"
+                class="float-r"
+                (click)="orderFood(item)"
+              >
+                Order Now
+              </button>
+            </div>
+          </mat-card-actions>
+        </div>
+      </div>
+    </mat-card>
+  </ng-container>
+</ng-container>
+<ng-template #noCartItems>
+  <h2 style="text-align: center; padding-top: 3rem">
+    Empty cart. Please add items
+  </h2>
+</ng-template>

@@ -1,0 +1,167 @@
+.card {
+  background: #fff;
+  transition: all 0.2s ease;
+  box-shadow: 2px 2px 5px 5px rgb(0 0 0 / 12%);
+  box-sizing: border-box;
+  color: #000;
+  background-color: #fff;
+  border-radius: 15px;
+  padding: 20px;
+  padding-bottom: 0;
+
+  &:hover {
+    box-shadow: 5px 5px 10px 10px rgb(0 0 0 / 12%);
+  }
+}
+
+.padding-all {
+  padding: 20px;
+}
+
+.border-veg {
+  border-top: 6px solid green;
+  border-right: 4px solid green;
+}
+
+.border-non-veg {
+  border-top: 6px solid red;
+  border-right: 4px solid red;
+}
+ul {
+  padding-left: 0px;
+}
+
+ul > li {
+  display: inline-block;
+}
+
+.food-title {
+  padding-left: 2rem;
+  margin-bottom: 0;
+  font-weight: bold;
+}
+
+.padding-right-8 {
+  padding-right: 8px;
+}
+
+.align-image {
+  width: 100%;
+  padding-left: 20px;
+  padding-top: 20px;
+}
+
+.bottom-align {
+  position: absolute;
+  bottom: 5px;
+}
+
+.padding-t-1 {
+  padding-top: 1rem;
+}
+
+.color-box {
+  padding-right: 2px;
+  padding-left: 2px;
+}
+
+.color-g {
+  color: green;
+  padding-top: 10px;
+}
+
+.button-border {
+  border-radius: 20px;
+  width: 100%;
+}
+
+.background-m {
+  background-color: blue;
+}
+
+.color-m {
+  color: #e20074;
+}
+
+.button-float {
+  float: right;
+  bottom: 20px;
+}
+
+.float-r {
+  float: right;
+}
+
+.padding-t8 {
+  padding-top: 0.5rem;
+}
+
+.img-border {
+  border: 2px solid black;
+}
+
+.text-higlight {
+  color: darkslategrey;
+}
+
+input {
+  text-align: center;
+  border: 1px solid #6c757d;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+.wrapper {
+  border: 2px #dcd3d3 solid;
+  border-radius: 15px;
+  width: 60%;
+}
+
+.plusminus {
+  height: 100%;
+  width: 30%;
+  background: white;
+  border: none;
+  font-size: 40px;
+  color: #5f5fce;
+}
+
+.num {
+  height: 100%;
+  width: 39%;
+  border: none;
+  font-size: 30px;
+}
+
+.background-g:disabled {
+  background: lightslategrey;
+  color: white;
+}
+
+.bestseller {
+  display: flex;
+  font-size: 0.93rem;
+  color: #ee9c00;
+  font-weight: 500;
+  margin-left: 8px;
+}
+
+.example-additional-selection {
+  opacity: 0.75;
+  font-size: 0.75em;
+}
+
+.search-text {
+  font-weight: bold;
+  padding-right: 10px;
+  color: lightseagreen;
+}
+
+.input-field {
+  text-align: right;
+  padding-top: 10px;
+  padding-right: 20px;
+}

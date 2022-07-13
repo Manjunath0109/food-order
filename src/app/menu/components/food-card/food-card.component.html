@@ -1,0 +1,125 @@
+<div class="input-field">
+  <span class="search-text">Filter By</span>
+  <mat-form-field appearance="fill">
+    <mat-label>Categories</mat-label>
+    <mat-select
+      [formControl]="filter.filterForm"
+      multiple
+      (selectionChange)="applyFilters($event)"
+    >
+      <mat-select-trigger>
+        {{ filter.filterForm.value[0] || "" }}
+        <span
+          *ngIf="(filter.filterForm.value?.length || 0) > 1"
+          class="example-additional-selection"
+        >
+          (+{{ (filter.filterForm.value?.length || 0) - 1 }}
+          {{ filter.filterForm.value?.length === 2 ? "other" : "others" }})
+        </span>
+      </mat-select-trigger>
+      <mat-option *ngFor="let value of filter.values" [value]="value">{{
+        value
+      }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<ng-container
+  *ngFor="
+    let item of menuItems$
+      | async
+      | categoryFilter: categoryFilterQuery
+      | keyvalue;
+    let first = first
+  "
+>
+  <h1 class="food-title" [ngClass]="{ 'padding-t-1': !first }">
+    {{ item.key }}
+  </h1>
+  <div class="row">
+    <ng-container *ngFor="let food of item.value; trackBy: identify">
+      <div class="col-md-6 col-lg-4 col-sm-12 padding-all">
+        <mat-card>
+          <div
+            class="card"
+            [ngClass]="food.type === 'Veg' ? 'border-veg' : 'border-non-veg'"
+          >
+            <div class="row">
+              <div class="col-md-7 col-lg-7">
+                <mat-card-subtitle>{{
+                  food.cuisine + " Cuisine"
+                }}</mat-card-subtitle>
+                <mat-card-title>{{ food.name }}</mat-card-title>
+                <mat-card-content class="padding-t-1">
+                  <div><strong>Price</strong></div>
+                  <div>{{ food.price | currency: "INR" }}</div>
+                  <div class="color-g"><strong>Availability</strong></div>
+                  <ul>
+                    <li
+                      class="padding-right-8"
+                      *ngFor="let availability of food.availability"
+                    >
+                      {{ availability + " |" | titlecase }}
+                    </li>
+                  </ul>
+                  <div><strong>Quantity</strong></div>
+                  <div class="wrapper" *ngIf="!food.isAdded">
+                    <button class="plusminus" (click)="handleMinus(food)">
+                      -
+                    </button>
+                    <input
+                      type="number"
+                      class="num"
+                      [value]="food.quantity || 0"
+                      [(ngModel)]="food.quantity"
+                      max="20"
+                      (change)="handleChange($event, food)"
+                    />
+                    <button class="plusminus" (click)="handlePlus(food)">
+                      +
+                    </button>
+                  </div>
+                  <div *ngIf="food.isAdded">
+                    <strong>{{ food.quantity }}</strong>
+                  </div>
+                </mat-card-content>
+              </div>
+              <div class="col-md-5 col-lg-5">
+                <span class="bestseller" *ngIf="food.bestSeller"
+                  ><mat-icon>star</mat-icon
+                  ><span style="padding-top: 5px">Bestseller</span></span
+                >
+                <div class="align-image">
+                  <img
+                    mat-card-image
+                    src="../../../../assets/Food_default.jpg"
+                    alt="Mobile Image"
+                  />
+                </div>
+                <mat-card-actions>
+                  <div>
+                    <button
+                      mat-stroked-button
+                      matRipple
+                      class="button-border"
+                      color="primary"
+                      [ngClass]="{ 'background-g': food.isAdded }"
+                      [disabled]="food.isAdded || !food.quantity"
+                      (click)="addToCart(food)"
+                    >
+                      {{ !food.isAdded ? "Add to cart" : "Added" }}
+                    </button>
+                  </div>
+                </mat-card-actions>
+              </div>
+            </div>
+            <mat-card-footer>
+              <a mat-flat-button matRipple class="button-float color-m"
+                >Details</a
+              >
+            </mat-card-footer>
+          </div>
+        </mat-card>
+      </div>
+    </ng-container>
+  </div>
+</ng-container>

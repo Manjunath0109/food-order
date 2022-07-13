@@ -1,0 +1,39 @@
+.nav-logo {
+  padding: 1rem;
+}
+
+.fit-logo {
+  width: 60px;
+  height: 40px;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.padding-left {
+  padding-left: 4px;
+}
+
+mat-sidenav-container {
+  height: calc(205vh - 115vh);
+  overflow-x: hidden;
+}
+
+mat-sidenav {
+  width: 360px;
+  background-color: #f5f5f5;
+}
+
+mat-sidenav-content::-webkit-scrollbar {
+  width: 0px;
+  background: transparent; /* make scrollbar transparent */
+}
+
+// .mat-drawer:not(.mat-drawer-side) {
+//   position: fixed;
+// }
+
+// .mat-drawer-backdrop {
+//   position: fixed !important;
+// }

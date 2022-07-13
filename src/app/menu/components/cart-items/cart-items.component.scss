@@ -1,0 +1,84 @@
+.card {
+  background: #fff;
+  transition: all 0.2s ease;
+  box-shadow: 2px 2px 5px 5px rgb(0 0 0 / 12%);
+  box-sizing: border-box;
+  color: #000;
+  background-color: #fff;
+  border-radius: 15px;
+  padding: 20px;
+  padding-bottom: 0;
+  padding-top: 10px;
+
+  &:hover {
+    box-shadow: 5px 5px 10px 10px rgb(0 0 0 / 12%);
+  }
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.float-r {
+  float: right;
+}
+
+.font-l {
+  font-size: large;
+  padding-top: 14px;
+}
+
+.color-m {
+  color: #e20074;
+}
+
+.button-float {
+  float: right;
+  bottom: 20px;
+}
+
+input {
+  text-align: center;
+  border: 1px solid #6c757d;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+.wrapper {
+  border: 2px #dcd3d3 solid;
+  border-radius: 15px;
+  width: 40%;
+}
+
+.plusminus {
+  height: 100%;
+  width: 30%;
+  background: white;
+  border: none;
+  font-size: 40px;
+  color: #5f5fce;
+}
+
+.num {
+  height: 100%;
+  width: 39%;
+  border: none;
+  font-size: 30px;
+}
+
+.all-action-cta {
+  padding: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.btn-group {
+  position: relative;
+  display: inline-flex;
+  vertical-align: middle;
+}
